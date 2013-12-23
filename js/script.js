@@ -116,7 +116,6 @@ function createChart(target, date){
 			var selected_meter = $('select[name=selected_meter]').val();						
 							
 			$.ajax({
-				//url: 'ajax.php?a='+target+'&date='+date,
 				url: 'ajax.php?a='+target+'&date='+date,
 				dataType: 'json',
 				success: function( jsonData ) {
@@ -200,7 +199,8 @@ function createChart(target, date){
 						}
 						else if(target == 'day')
 						{
-							var type = 'areaspline';		
+							var type = 'areaspline';
+							var serieName = 'Watt';		
 							var rangeSelector = true;
 							var navScroll = true;
 							var pointInterval = 60 * 1000;
@@ -249,7 +249,6 @@ function createChart(target, date){
 							var rangeSelector = false;
 							var navScroll = false;
 							var pointInterval = 24 * 60 * 60 * 1000;
-							//var pointInterval = 60 * 1000;
 							var tickInterval = 24 * 60 * 60 * 1000;
 							var plotLines = null;
 							var buttons = [];
@@ -262,8 +261,6 @@ function createChart(target, date){
 							var navScroll = false;
 							var pointInterval = 24 * 60 * 60 * 1000;
 							var tickInterval = 24 * 60 * 60 * 1000;
-							//var pointInterval = 60 * 1000;
-							//var tickInterval = null;
 							var plotLines = null;
 							var buttons = [];
 						}						
@@ -343,12 +340,9 @@ function createChart(target, date){
 																
 				},
     			cache: false
-			});
-			
-						
+			});						
 }		
-
-			
+	
 $(document).ready(function() {
 
 	// Dialogs (alerts)
@@ -560,7 +554,7 @@ $(document).ready(function() {
             maxPadding: 0.2,
             title: {
                 text: 'Watt',
-                margin: 40
+                margin: 10
             },
 			plotLines : [{
 				value : 170,
