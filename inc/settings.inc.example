@@ -1,0 +1,51 @@
+<?php
+
+define('BASE_PATH', dirname( dirname(__FILE__) ));
+
+/**
+ * Database settings
+ */
+$config['db_host'] = '';
+$config['db_name'] = '';
+$config['db_user'] = '';
+$config['db_pass'] = '';
+
+/**
+ * The user name of the git hub user who owns the repo
+ */
+$config['bitbucket_user'] = 'magic_monkey';
+
+/**
+ * The repo on GitHub we will be updating from
+ */
+$config['bitbucket_repo'] = 'youless';
+
+/**
+ * The branch to update from
+ */
+$config['bitbucket_branch'] = 'null';
+
+/**
+ * The current commit the files are on.
+ * 
+ * NOTE: You should only need to set this initially it will be
+ * automatically set by the library after subsequent updates.
+ */
+$config['current_tag'] = 'v1.3.0-dev';
+
+/**
+ * A list of files or folders to never perform an update on.
+ * Not specifying a relative path from the webroot will apply
+ * the ignore to any files with a matching segment.
+ *
+ * I.E. Specifying 'admin' as an ignore will ignore
+ * 'application/controllers/admin.php'
+ * 'application/views/admin/test.php'
+ * and any other path with the term 'admin' in it.
+ */
+$config['ignored_files'] = array(
+	'inc/settings.inc.php'
+);
+
+
+?>
