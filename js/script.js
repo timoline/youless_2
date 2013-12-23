@@ -330,7 +330,7 @@ function createChart(target, date){
 				            pointInterval: pointInterval,
 							tooltip: {
 								pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y} '+jsonData[i].unit+'</b><br/>',
-								valueDecimals: 3
+								valueDecimals: 0
 							},
 				            data: jsonData[i].val
 			            }
