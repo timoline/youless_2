@@ -438,7 +438,7 @@ class Database {
 				'',
 				'-1',
 				'0'
-              from dual where exists (select * from data_m where time <  :time);
+              from dual where exists (select * from meter".$meter."_data_m where time <  :time);
 	    ");
 
             $sth->bindValue(':time', $time, PDO::PARAM_STR);
