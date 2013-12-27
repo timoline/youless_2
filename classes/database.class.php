@@ -426,7 +426,7 @@ class Database {
    /**
     * Add missing minute data (cronjob)
     */ 
-    public function addMissingMinuteData($time) {
+    public function addMissingMinuteData($meter, $time) {
 
         try {
             $sth = $this->_db->prepare("INSERT INTO `meter".$meter."_data_m` (
