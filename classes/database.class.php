@@ -260,13 +260,15 @@ class Database {
         try {
             $sth = $this->_db->prepare("			
 			SELECT 
-				(value)/60/1000 as kwh,
-				time
+				sum(value)/60/1000 as kwh,
+				time,
+				islow
 			FROM
 				`meter".$meter."_data_m` 
             WHERE
                 DATE_FORMAT(time, '%Y-%m-%d H%:i%') BETWEEN ? AND ?	
-			");
+			GROUP BY
+				islow");
 
 			$sth->bindValue(1, $begin, PDO::PARAM_STR);  
 			$sth->bindValue(2, $end, PDO::PARAM_STR);  			         			
@@ -469,5 +471,27 @@ class Database {
         }
     }     
        */
+	
+	/**
+	* Get all data grouped by time for islow update
+	*/
+    public function data_m($meter) {
+        try {
+            $sth = $this->_db->prepare("
+            SELECT
+            	*
+            FROM 
+            	`meter".$meter."_data_m`
+            ORDER BY  
+				time ASC");
+
+            $sth->execute();
+
+            $rows = $sth->fetchAll(PDO::FETCH_OBJ);
+			return $rows;
+        } catch (PDOException $e) {
+            $this->printErrorMessage($e->getMessage());
+        }
+    }  	   
 }
 ?>

@@ -84,9 +84,9 @@ class Generic {
 	
 		foreach($rows as $k) {
 			if ( $this->isLowKwh($k->time) == 0) {
-				$data->kwh += $k->kwh;						
+				$data->kwh = $k->kwh;						
 			} else {
-				$data->kwhLow += $k->kwh;				
+				$data->kwhLow = $k->kwh;				
 			}
 		}
 				
@@ -190,6 +190,32 @@ class Generic {
         }	
 	}	 
 
+	
+	/**
+	* update the database with islow
+	*/	
+   public function updateDatabaseIslow($meter){
+
+     	$this->db = new Database($this->config);
+     	$settings = $this->db->getSettings();
+
+			$rows = $this->db->data_m($meter);
+						
+			foreach($rows as $k) {
+			
+			if ( $this->isLowKwh($k->time) == 0) {
+					$low = FALSE;  
+				} else {
+					$low= TRUE;
+				}
+			
+			$this->db->addMinuteData( $meter, $k->time, $k->unit, $k->delta, $k->value, $low );
+				
+			}
+                      	 		
+		return;	
+		  
+     }
 }
 
 ?>
