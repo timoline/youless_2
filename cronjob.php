@@ -6,8 +6,10 @@ if (PHP_SAPI == "cli")
 	include "classes/curl.class.php";
 	include "classes/request.class.php";
 	include "classes/database.class.php";
+	include "classes/generic.class.php";	
 	
 	$db = new Database($config);
+	$gen = new Generic($config);
 	
 	// Retrieve all available meters
 	$meters = $db->getMeters();
@@ -26,8 +28,11 @@ if (PHP_SAPI == "cli")
 		for($t=1;$t<$total;$t++)
 		{
 			$mtime = $time + ( $t * $data['dt'] );
+			$low = $gen->IsLowKwh(date('Y-m-d H:i:00',$mtime));
 
-			$db->addMinuteData( $v['id'], date('Y-m-d H:i:00',$mtime), $data['un'], $data['dt'], str_replace("\"", "",$row[$t]) );		  
+			$db->addMinuteData( $v['id'], date('Y-m-d H:i:00',$mtime), $data['un'], $data['dt'], str_replace("\"", "",$row[$t]), $low );
+			
+			echo $v['id'] . " - ". $data['tm']." - ". $low."\n";		  
 		}		
 		
 		// Update counter table
@@ -39,7 +44,7 @@ if (PHP_SAPI == "cli")
 			$db->addMissingMinuteData( $v['id'], date('Y-m-d H:i:00',$i));
 		}
 		
-		echo $v['id'] . " - ". $data['tm']."\n";
+		
 	}
 	exit;
 }

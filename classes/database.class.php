@@ -369,26 +369,29 @@ class Database {
    /**
     * Add minute data (cronjob)
     */ 
-    public function addMinuteData($meter, $time, $unit, $delta, $values) {
+    public function addMinuteData($meter, $time, $unit, $delta, $values, $islow) {
 
         try {
             $sth = $this->_db->prepare("INSERT INTO `meter".$meter."_data_m` (
             	time,
 				unit,
 				delta,
-				value
+				value,
+				islow
             ) VALUES (
             	:time,
 				:unit,
 				:delta,
-				:value
+				:value,
+				:islow
             ) 
-	    ON DUPLICATE KEY UPDATE value = :value, delta = :delta, unit = :unit");
+	    ON DUPLICATE KEY UPDATE value = :value, delta = :delta, unit = :unit, islow = :islow");
 
             $sth->bindValue(':time', $time, PDO::PARAM_STR);
 			$sth->bindValue(':unit', $unit, PDO::PARAM_STR);
 			$sth->bindValue(':delta', $delta, PDO::PARAM_INT);
-			$sth->bindValue(':value', $values, PDO::PARAM_STR);
+			$sth->bindValue(':value', $values, PDO::PARAM_INT);
+			$sth->bindValue(':islow', $islow, PDO::PARAM_INT);
 			
             $sth->execute();
         } catch (PDOException $e) {
@@ -433,10 +436,12 @@ class Database {
 				time,
 				unit,
 				delta,
-				value
+				value,
+				islow
             ) select :time,
 				'',
 				'-1',
+				'0',
 				'0'
               from dual where exists (select * from meter".$meter."_data_m where time <  :time);
 	    ");

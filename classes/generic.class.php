@@ -13,7 +13,7 @@ class Generic {
      * Create selector
      */
 	public function selector($name, $selected, $options){
-		$html = "<select name='".$name."'>\n";
+		$html = "<select class=\"form-control\" name='".$name."'>\n";
 		
 		foreach($options as $k => $v) 
 		{
@@ -29,12 +29,13 @@ class Generic {
      * Create time selector
      */
 	public function timeSelector($selectedHour, $selectedMin, $prefix){
-		$html = "<select name='".$prefix."_hour'>\n";
+		$html = "<select class=\"form-control\" name='".$prefix."_hour'>\n";
 		for ($i=0;$i<24;$i++) 
 		{
 			$html .= "<option value='" . sprintf("%02d", $i) . "'" . ($i==$selectedHour?" selected":"") . ">$i</option>\n";
 		}
-		$html .= "</select>:<select name='".$prefix."_min'>\n";
+		$html .= "</select>:";
+		$html .="<select class=\"form-control\" name='".$prefix."_min'>\n";
 		for ($i=0;$i<60;$i+=5) 
 		{
 			$html .= "<option value='" . sprintf("%02d", $i) . "'" . ($i==$selectedMin?" selected":"") . ">" . sprintf("%02d", $i) . "</option>\n";
@@ -188,7 +189,7 @@ class Generic {
             }
         }	
 	}	 
-     
+
 }
 
 ?>
