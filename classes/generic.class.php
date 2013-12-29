@@ -83,7 +83,7 @@ class Generic {
 //			file_put_contents('php://stderr', print_r($rows, TRUE));
 	
 		foreach($rows as $k) {
-			if ( $this->isLowKwh($k->time) == 0) {
+			if ( $k->islow == 0 ) {
 				$data->kwh = $k->kwh;						
 			} else {
 				$data->kwhLow = $k->kwh;				
