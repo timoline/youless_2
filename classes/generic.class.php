@@ -66,7 +66,10 @@ class Generic {
 		
 		return $this->calculateTimeRangeKwhCosts($meter, $start, $end);
      }    	
-	 
+
+    /**
+     * Calculate kwhs and costs for specific time range
+     */		 
 	 public function calculateTimeRangeKwhCosts($meter, $beginDate, $endDate){
 
 		$this->db = new Database($this->config);
@@ -170,7 +173,7 @@ class Generic {
 	}   	
 	
    /**
-     * Edit config file
+     * Edit /inc/settings.inc.php file
      */		 
 	public function changeConfig($key, $value){
         $lines = file(BASE_PATH.'/inc/settings.inc.php', FILE_IGNORE_NEW_LINES);
@@ -192,7 +195,7 @@ class Generic {
 
 	
 	/**
-	* update the database with islow
+	* update the database with islow value (true or false)
 	*/	
    public function updateDatabaseIslow($meter){
 

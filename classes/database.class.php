@@ -370,6 +370,7 @@ class Database {
         }
     }     
 	*/
+	
    /**
     * Add minute data (cronjob)
     */ 
@@ -430,6 +431,7 @@ class Database {
         }
     } 	
   */ 
+  
    /**
     * Add missing minute data (cronjob)
     */ 
@@ -455,6 +457,7 @@ class Database {
         } catch (PDOException $e) {
         }
     } 
+	
    /**
     * Add hourly count (cronjob)
   
@@ -475,7 +478,7 @@ class Database {
        */
 	
 	/**
-	* Get all data grouped by time for islow update
+	* Get all data from a mter grouped by time for islow update
 	*/
     public function data_m($meter) {
         try {
