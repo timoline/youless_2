@@ -137,6 +137,7 @@ class Database {
 					  `delta` int(11) NOT NULL,
 					  `value` text NOT NULL,
 					  `inserted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+					  `islow` tinyint(1) ,
 					  PRIMARY KEY (`id`),
 					  KEY `time` (`time`)
 					) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;																					
