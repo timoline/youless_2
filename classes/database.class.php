@@ -321,7 +321,8 @@ class Database {
             $sth = $this->_db->prepare("
 			SELECT     
 				sum(value)/60 as kwh, 
-				time
+				time,
+				unit
 			FROM 
 				`meter".$meter."_data_m`
 			WHERE       
@@ -345,7 +346,7 @@ class Database {
 	
 	/**
 	* Get kwh count
-	*/
+
     public function getKwhCount($meter, $datetime) {
         try {
             $sth = $this->_db->prepare("
@@ -367,7 +368,7 @@ class Database {
             $this->printErrorMessage($e->getMessage());
         }
     }     
-
+	*/
    /**
     * Add minute data (cronjob)
     */ 

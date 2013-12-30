@@ -95,7 +95,7 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != false)
 		$sqlDate = $_GET['date'];
 		
 		$week = date('W',strtotime($sqlDate));
-		$year = date('Y',strtotime($sqlDate));
+		$year = date('o',strtotime($sqlDate));
 	
 		$begin = date("Y-m-d", strtotime($year."W".$week));
 		$end = date("Y-m-d", strtotime($year."W".$week)+(6*86400));		
@@ -140,7 +140,7 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != false)
 		$sqlDate = $_GET['date'];
 		
 		$week = date('W',strtotime($sqlDate));
-		$year = date('Y',strtotime($sqlDate));
+		$year = date('o',strtotime($sqlDate));
 	
 		$start = date("Y-m-d", strtotime($year."W".$week));
 		$end = date("Y-m-d", strtotime($year."W".$week)+(6*86400));
