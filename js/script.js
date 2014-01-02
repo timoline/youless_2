@@ -259,7 +259,7 @@ function createChart(target, date){
 							var serieName = 'kWh';
 							var rangeSelector = false;
 							var navScroll = false;
-							var pointInterval = 24 * 60 * 60 * 1000;
+							var pointInterval = 31 * 24 * 60 * 60 * 1000;
 							var tickInterval = 24 * 60 * 60 * 1000;
 							var plotLines = null;
 							var buttons = [];

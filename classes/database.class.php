@@ -135,11 +135,11 @@ class Database {
 					  `time` datetime NOT NULL,
 					  `unit` varchar(20) NOT NULL,
 					  `delta` int(11) NOT NULL,
-					  `value` text NOT NULL,
+					  `value` int(11) NOT NULL,
 					  `inserted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 					  `islow` tinyint(1) ,
 					  PRIMARY KEY (`id`),
-					  KEY `time` (`time`)
+					  UNIQUE KEY `time` (`time`)
 					) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;																					
 			    ");  
 			}          
